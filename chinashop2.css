@@ -1,0 +1,952 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f8fa;
+    color: #151515;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+}
+
+.logo span {
+    color: #e63946;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav a {
+    color: #666;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.nav a:hover {
+    color: #e63946;
+}
+
+.header-button {
+    background: #151515;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.header-button {
+    position: relative;
+    display: inline-block;
+
+    background: #151515;
+    color: white;
+
+    padding: 12px 18px;
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Светящаяся линия */
+
+.header-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.5),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.6s ease;
+}
+
+
+/* Текст находится поверх анимации */
+
+.header-button {
+    z-index: 1;
+}
+
+
+/* Наведение */
+
+.header-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(230, 57, 70, 0.25);
+}
+
+
+/* Движение линии */
+
+.header-button:hover::before {
+    left: 140%;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    background: white;
+    padding: 90px 0 100px;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 80px;
+}
+
+.hero-label {
+    display: inline-block;
+    color: #e63946;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 1.02;
+    letter-spacing: -3px;
+    max-width: 700px;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #e63946;
+}
+
+.hero-description {
+    max-width: 620px;
+    color: #666;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+/*.primary-button {
+    background: #e63946;
+    color: white;
+    padding: 15px 23px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+}*/
+.primary-button {
+    position: relative;
+    overflow: hidden;
+    background: #e63946;
+    color: white;
+    padding: 15px 23px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.primary-button {
+    position: relative;
+    transition: 0.3s;
+}
+
+.primary-button:hover {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+.primary-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.primary-button:hover::before {
+    left: 150%;
+}
+
+.secondary-button {
+    border: 1px solid #ddd;
+    background: white;
+    padding: 15px 23px;
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.hero-info {
+    display: flex;
+    gap: 35px;
+    margin-top: 50px;
+}
+
+.hero-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hero-info strong {
+    font-size: 16px;
+}
+
+.hero-info span {
+    color: #888;
+    font-size: 11px;
+}
+
+
+/* ================= HERO CARD ================= */
+
+.hero-card {
+    background: #151515;
+    color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.hero-card-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #aaa;
+    margin-bottom: 35px;
+    letter-spacing: 1px;
+}
+
+.online {
+    color: #55c878;
+}
+
+.hero-card h3 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.fake-input {
+    background: #242424;
+    border: 1px solid #333;
+    color: #888;
+    padding: 17px;
+    border-radius: 7px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.fake-upload {
+    margin-top: 12px;
+    background: #242424;
+    border: 1px dashed #444;
+    border-radius: 7px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fake-upload span {
+    font-size: 25px;
+}
+
+.fake-upload strong {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.fake-upload small {
+    color: #888;
+    font-size: 10px;
+}
+
+.fake-button {
+    position: relative;
+    overflow: hidden;
+    background: #e63946;
+    color: white;
+    padding: 15px 23px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    margin-top: 15px;
+    width: 100%;
+}
+
+
+.fake-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+.fake-button:hover::before {
+    left: 150%;
+}
+.fake-button {
+    position: relative;
+    transition: 0.3s;
+}
+
+.fake-button:hover {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+
+.card-note {
+    text-align: center;
+    color: #777;
+    font-size: 10px;
+    margin-top: 15px;
+}
+
+
+/* ================= WHY ================= */
+
+.why {
+    padding: 90px 0;
+}
+
+.section-heading {
+    margin-bottom: 45px;
+}
+
+.section-heading p {
+    color: #e63946;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.section-heading h2 {
+    font-size: 40px;
+    letter-spacing: -1.5px;
+}
+
+.section-heading span {
+    display: block;
+    color: #777;
+    margin-top: 12px;
+}
+
+.center {
+    text-align: center;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.why-card {
+    background: white;
+    padding: 35px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+}
+
+.why-icon {
+    font-size: 35px;
+    margin-bottom: 25px;
+}
+
+.why-card h3 {
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.why-card p {
+    color: #777;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+
+/* ================= HOW ================= */
+
+.how {
+    background: white;
+    padding: 90px 0;
+}
+
+.steps {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.step {
+    display: flex;
+    gap: 35px;
+    padding: 30px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.step:last-child {
+    border-bottom: none;
+}
+
+.step-number {
+    color: #e63946;
+    font-size: 13px;
+    font-weight: 800;
+    min-width: 45px;
+}
+
+.step-content h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.step-content p {
+    color: #777;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+
+/* ================= REQUEST ================= */
+
+.request-section {
+    padding: 100px 0;
+}
+
+.request-box {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    background: #151515;
+    color: white;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.request-text {
+    padding: 60px;
+}
+
+.request-label {
+    color: #e63946;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.request-text h2 {
+    font-size: 43px;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+}
+
+.request-text > p {
+    color: #aaa;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.request-tips {
+    margin-top: 35px;
+}
+
+.request-tips div {
+    color: #ccc;
+    font-size: 13px;
+    margin-bottom: 13px;
+}
+
+
+/* ================= FORM ================= */
+
+.request-form {
+    background: white;
+    color: #151515;
+    padding: 50px;
+}
+
+.request-form label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 18px;
+}
+
+.request-form label:first-child {
+    margin-top: 0;
+}
+
+.request-form label span {
+    color: #999;
+    font-weight: 400;
+}
+
+.request-form input,
+.request-form textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    padding: 13px;
+    outline: none;
+    font-size: 13px;
+}
+
+.request-form input:focus,
+.request-form textarea:focus {
+    border-color: #e63946;
+}
+
+.request-form textarea {
+    height: 110px;
+    resize: vertical;
+}
+
+.upload-box {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px dashed #ccc;
+    border-radius: 7px;
+}
+
+.upload-icon {
+    font-size: 25px;
+}
+
+.upload-box strong {
+    display: block;
+    font-size: 12px;
+}
+
+.upload-box p {
+    color: #999;
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+.upload-box button {
+    margin-left: auto;
+    background: #f2f2f2;
+    border: none;
+    padding: 9px 12px;
+    border-radius: 5px;
+    font-size: 11px;
+}
+.submit-button {
+    border: none;
+    margin-top: 20px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #e63946;
+    color: white;
+    padding: 15px 23px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.submit-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.submit-button:hover::before {
+    left: 150%;
+}
+.submit-button {
+    position: relative;
+    transition: 0.3s;
+}
+
+.submit-button:hover {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+
+
+
+
+.form-policy {
+    text-align: center;
+    color: #999;
+    font-size: 9px;
+    margin-top: 12px;
+}
+
+
+/* ================= EXPECTATION ================= */
+
+.expectation {
+    background: white;
+    padding: 100px 0;
+}
+
+.expectation-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.expectation-label {
+    color: #e63946;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.expectation h2 {
+    font-size: 45px;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.expectation-content > div > p:last-child {
+    color: #777;
+    line-height: 1.6;
+    max-width: 450px;
+}
+
+.result-card {
+    background: #f7f8fa;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    color: #888;
+    font-size: 10px;
+    margin-bottom: 25px;
+}
+
+.result-status {
+    color: #159447;
+    font-weight: 700;
+}
+
+.result-card h3 {
+    font-size: 19px;
+    margin-bottom: 25px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+}
+
+.result-row span {
+    color: #777;
+}
+
+.result-total {
+    margin-top: 20px;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-total span {
+    font-size: 12px;
+    color: #777;
+}
+
+.result-total strong {
+    color: #e63946;
+    font-size: 18px;
+}
+
+
+/* ================= CTA ================= */
+
+.cta {
+    padding: 100px 0;
+    background: #e63946;
+    color: white;
+}
+
+.cta-content {
+    text-align: center;
+}
+
+.cta-content p {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.cta-content h2 {
+    font-size: 45px;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+}
+
+.cta-content a {
+    display: inline-block;
+    background: white;
+    color: #151515;
+    padding: 15px 25px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background: #111;
+    color: white;
+    padding-top: 60px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 50px;
+}
+
+.footer-main p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.footer h3 {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.footer a:not(.logo),
+.footer p {
+    display: block;
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.copyright {
+    border-top: 1px solid #222;
+    text-align: center;
+    padding: 20px;
+    color: #555;
+    font-size: 11px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+
+    .nav {
+        display: none;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+    }
+
+    .hero-card {
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .request-box {
+        grid-template-columns: 1fr;
+    }
+
+    .expectation-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .header {
+        height: 70px;
+    }
+
+    .header-button {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons a {
+        text-align: center;
+    }
+
+    .hero-info {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .hero-info span {
+        font-size: 9px;
+    }
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+    .request-text {
+        padding: 35px 25px;
+    }
+
+    .request-text h2 {
+        font-size: 35px;
+    }
+
+    .request-form {
+        padding: 30px 20px;
+    }
+
+    .expectation h2 {
+        font-size: 36px;
+    }
+
+    .cta-content h2 {
+        font-size: 35px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
