@@ -682,7 +682,11 @@
 
 
     
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+    // Выбор фотографии
     const chooseButton = document.getElementById("choose-photo");
     const photoInput = document.getElementById("product-photo");
     const fileName = document.getElementById("file-name");
@@ -705,15 +709,77 @@
             fileName.textContent = "Выбрано: " + file.name;
         }
     });
-</script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    // Подключение к Supabase
+    const SUPABASE_URL = "https://jeovhbxmvxwmbmzqoarb.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_z8yUDwa-3qMyzQJqDalEhQ_6V4d88qA";
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    const db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
-<script>
-  const SUPABASE_URL = "https://jeovhbxmvxwmbmzqoarb.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_z8yUDwa-3qMyzQJqDalEhQ_6V4d88qA?";
+    // Отправка заявки
+    const form = document.querySelector(".request-form");
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const textInputs = form.querySelectorAll('input[type="text"]');
+
+        const description = form.querySelector("textarea").value.trim();
+        const productLink = textInputs[0].value.trim();
+        const budget = textInputs[1].value.trim();
+        const customerName = textInputs[2].value.trim();
+        const contact = textInputs[3].value.trim();
+        const quantity = form.querySelector('input[type="number"]').value;
+
+        const message = form.querySelector(".form-policy");
+        const button = form.querySelector(".submit-button");
+
+        if (!description || !customerName || !contact) {
+            message.textContent =
+                "Заполни описание товара, имя и контакт.";
+            return;
+        }
+
+        button.disabled = true;
+        message.textContent = "Отправляем заявку...";
+
+        try {
+            const { error } = await db
+                .from("requests")
+                .insert({
+                    customer_name: customerName,
+                    contact: contact,
+                    product_description: description,
+                    product_link: productLink || null,
+                    budget: budget || null,
+                    quantity: quantity ? Number(quantity) : 1,
+                    photo_path: null,
+                    status: "new"
+                });
+
+            if (error) {
+                throw error;
+            }
+
+            message.textContent =
+                "Заявка успешно отправлена! Спасибо.";
+
+            form.reset();
+            fileName.textContent = "Файл не выбран";
+
+        } catch (error) {
+            console.error("Ошибка отправки:", error);
+
+            message.textContent =
+                "Не удалось отправить заявку. Проверь настройки базы данных.";
+
+        } finally {
+            button.disabled = false;
+        }
+    });
 </script>
 </body>
 </html>
