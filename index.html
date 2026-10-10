@@ -451,29 +451,25 @@
                         >
 
 
-                        <div class="upload-box">
+                        
+                    <div class="upload-box">
+                        <div class="upload-icon">📷</div>
 
-                            <div class="upload-icon">
-                                📷
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Добавить фотографию
-                                </strong>
-
-                                <p>
-                                    JPG, PNG или WEBP
-                                </p>
-
-                            </div>
-
-                            <button type="button">
-                                Выбрать
-                            </button>
-
+                        <div>
+                        <strong>Добавить фотографию</strong>
+                        <p>JPG, PNG или WEBP</p>
+                        <p id="file-name">Файл не выбран</p>
                         </div>
+
+                        <input type="file"
+                             id="product-photo"
+                            accept="image/jpeg,image/png,image/webp"
+                             hidden>
+
+                            <button type="button" id="choose-photo">
+                                  Выбрать
+                            </button>
+                    </div>
 
 
                         <button
@@ -683,6 +679,35 @@
 
     </footer>
 
-</body>
 
+
+    
+<script>
+    const chooseButton = document.getElementById("choose-photo");
+    const photoInput = document.getElementById("product-photo");
+    const fileName = document.getElementById("file-name");
+
+    chooseButton.addEventListener("click", function () {
+        photoInput.click();
+    });
+
+    photoInput.addEventListener("change", function () {
+        const file = photoInput.files[0];
+
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) {
+                alert("Фото должно быть не больше 5 МБ");
+                photoInput.value = "";
+                fileName.textContent = "Файл не выбран";
+                return;
+            }
+
+            fileName.textContent = "Выбрано: " + file.name;
+        }
+    });
+</script>
+
+</body>
+</html>
+</body>
 </html>
